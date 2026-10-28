@@ -1,320 +1,353 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تولدت مبارک ملیکا 🎂</title>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>تولدت مبارک ملیکا</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #0f0c29;
+      --bg2: #302b63;
+      --bg3: #24243e;
+      --accent: #ff6b9d;
+      --accent2: #c44569;
+      --gold: #f8e9a1;
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.7);
+      --card: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.15);
+    }
 
-        body {
-            font-family: 'Vazirmatn', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-            color: white;
-            position: relative;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-        /* Confetti Canvas */
-        #confetti-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1000;
-        }
+    body {
+      font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(160deg, var(--bg1), var(--bg2), var(--bg3));
+      background-attachment: fixed;
+      min-height: 100vh;
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
+    .container {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
 
-        .cake {
-            font-size: 120px;
-            animation: bounce 2s infinite;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
-        }
+    /* ===== Counter Section ===== */
+    .counter-section {
+      text-align: center;
+      margin-bottom: 36px;
+      perspective: 1000px;
+    }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
+    .counter-title {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-bottom: 18px;
+      letter-spacing: 0.5px;
+    }
 
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 15px;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            background: linear-gradient(to right, #fff, #ffecd2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
+    .counter-card {
+      background: var(--card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px 16px 22px;
+      box-shadow: 
+        0 20px 40px rgba(0,0,0,0.35),
+        0 0 0 1px rgba(255,255,255,0.05) inset,
+        0 -2px 20px rgba(255,107,157,0.08);
+      transform-style: preserve-3d;
+      position: relative;
+    }
 
-        @keyframes glow {
-            from { text-shadow: 0 0 20px #fff, 0 0 30px #ff6b6b; }
-            to { text-shadow: 0 0 30px #fff, 0 0 40px #feca57; }
-        }
+    .counter-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent 50%);
+      pointer-events: none;
+    }
 
-        .subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 40px;
-            opacity: 0.95;
-            font-weight: 300;
-        }
+    .time-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
 
-        .card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 40px 30px;
-            margin: 30px auto;
-            max-width: 600px;
-            border: 1px solid rgba(255,255,255,0.3);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
-            animation: fadeInUp 1s ease;
-        }
+    .time-box {
+      background: rgba(0,0,0,0.25);
+      border-radius: 16px;
+      padding: 14px 4px 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .time-value {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1.1;
+      text-shadow: 0 2px 12px rgba(248,233,161,0.35);
+    }
 
-        .message {
-            font-size: 1.4rem;
-            line-height: 2;
-            margin-bottom: 30px;
-        }
+    .time-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 4px;
+      font-weight: 400;
+    }
 
-        .hearts {
-            font-size: 2.5rem;
-            margin: 20px 0;
-            animation: pulse 1.5s infinite;
-        }
+    .from-date {
+      margin-top: 18px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
+    .from-date strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
 
-        .btn {
-            display: inline-block;
-            background: linear-gradient(45deg, #ff6b6b, #feca57);
-            color: white;
-            padding: 18px 45px;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
-            margin: 10px;
-        }
+    /* ===== Button ===== */
+    .btn-wrap {
+      text-align: center;
+      margin: 32px 0 24px;
+    }
 
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.6);
-        }
+    .open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: white;
+      border: none;
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-family: inherit;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(255,107,157,0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      -webkit-appearance: none;
+    }
 
-        .balloons {
-            position: absolute;
-            font-size: 40px;
-            animation: float 6s ease-in-out infinite;
-            opacity: 0.8;
-        }
+    .open-btn:active {
+      transform: scale(0.96);
+    }
 
-        .balloon1 { top: 10%; left: 5%; animation-delay: 0s; }
-        .balloon2 { top: 20%; right: 8%; animation-delay: 1s; }
-        .balloon3 { top: 60%; left: 10%; animation-delay: 2s; }
-        .balloon4 { top: 70%; right: 5%; animation-delay: 3s; }
+    .open-btn.hidden {
+      display: none;
+    }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(5deg); }
-        }
+    /* ===== Letter ===== */
+    .letter {
+      display: none;
+      background: var(--card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px 22px 32px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      animation: fadeUp 0.5s ease;
+    }
 
-        .age-box {
-            display: inline-block;
-            background: rgba(255,255,255,0.25);
-            padding: 15px 40px;
-            border-radius: 20px;
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 20px 0;
-            border: 2px solid rgba(255,255,255,0.4);
-        }
+    .letter.show {
+      display: block;
+    }
 
-        footer {
-            margin-top: 50px;
-            font-size: 1rem;
-            opacity: 0.8;
-        }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-        @media (max-width: 600px) {
-            h1 { font-size: 2.2rem; }
-            .cake { font-size: 80px; }
-            .subtitle { font-size: 1.3rem; }
-            .message { font-size: 1.1rem; }
-        }
-    </style>
+    .letter-title {
+      text-align: center;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 22px;
+      color: var(--gold);
+    }
+
+    .letter-body {
+      font-size: 1.02rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.92);
+      line-height: 2.05;
+      text-align: justify;
+    }
+
+    .letter-body p {
+      margin-bottom: 18px;
+    }
+
+    .signature {
+      margin-top: 36px;
+      text-align: left;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .sig-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .sig-date {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* Mobile optimizations */
+    @media (max-width: 400px) {
+      .time-value { font-size: 1.45rem; }
+      .time-label { font-size: 0.65rem; }
+      .letter-body { font-size: 0.97rem; }
+    }
+  </style>
 </head>
 <body>
-    <canvas id="confetti-canvas"></canvas>
+  <div class="container">
 
-    <div class="balloons balloon1">🎈</div>
-    <div class="balloons balloon2">🎈</div>
-    <div class="balloons balloon3">🎉</div>
-    <div class="balloons balloon4">🎁</div>
-
-    <div class="container">
-        <div class="cake">🎂</div>
-        <h1>تولدت مبارک ملیکا!</h1>
-        <p class="subtitle">Happy Birthday Melika 💖</p>
-
-        <div class="card">
-            <div class="hearts">💕 ✨ 🌸</div>
-            <p class="message">
-                عزیز دلم ملیکا<br>
-                امیدوارم سال جدید زندگیت پر از شادی، موفقیت و لحظه‌های قشنگ باشه.<br>
-                همیشه بخند و بدرخش 🌟
-            </p>
-            
-            <div class="age-box">
-                سال جدید مبارک 🎊
-            </div>
-
-            <button class="btn" onclick="launchConfetti()">🎉 جشن بگیر!</button>
-            <button class="btn" onclick="playMusic()" id="musicBtn">🎵 آهنگ تولد</button>
+    <!-- Counter -->
+    <div class="counter-section">
+      <div class="counter-title">از روزی که اومدی تا امروز</div>
+      <div class="counter-card">
+        <div class="time-grid" id="timeGrid">
+          <div class="time-box">
+            <div class="time-value" id="years">0</div>
+            <div class="time-label">سال</div>
+          </div>
+          <div class="time-box">
+            <div class="time-value" id="months">0</div>
+            <div class="time-label">ماه</div>
+          </div>
+          <div class="time-box">
+            <div class="time-value" id="days">0</div>
+            <div class="time-label">روز</div>
+          </div>
+          <div class="time-box">
+            <div class="time-value" id="hours">0</div>
+            <div class="time-label">ساعت</div>
+          </div>
         </div>
-
-        <footer>
-            ساخته شده با ❤️ برای ملیکا
-        </footer>
+        <div class="from-date">
+          از <strong>۷ آبان ۱۳۹۱</strong> تا امروز
+        </div>
+      </div>
     </div>
 
-    <audio id="birthdaySong" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
+    <!-- Button -->
+    <div class="btn-wrap">
+      <button class="open-btn" id="openBtn" onclick="openLetter()">
+        باز کردن متن تبریک
+      </button>
+    </div>
 
-    <script>
-        // Confetti system
-        const canvas = document.getElementById('confetti-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+    <!-- Letter -->
+    <div class="letter" id="letter">
+      <div class="letter-title">تولدت مبارک ملیکا 💛</div>
+      <div class="letter-body">
+        <p>سلام ملیکا زنگنه تولدت مبارک.</p>
+        <p>ملیکا امیدوارم سال جدید زندگیت پر از اتفاقای خوب، خنده‌های از ته دل و خاطرات قشنگ کنار خانوادت باشه که تا مدت‌ها با یادآوریشون لبخند بزنی.</p>
+        <p>امیدوارم هرجا که هستی و کنار هر آدم جدیدی که وارد زندگیت می‌شه حال دلت خوب باشه و روزهایی رو تجربه کنی که ارزش به خاطر سپردن داشته باشن.</p>
+        <p>امیدوارم خیلی از مشکلاتت تو سن جدیدت حل شن.</p>
+        <p>ما خاطره کم نداریم. یه زمان کلاً پیویت عر می‌زدم برای تبسم. کلی درد و دل کردیم و تو اون دوره همیشه. هرکدومشون یه گوشه‌ای از اون روزها رو برام زنده می‌کنن.</p>
+        <p>خیلی چیزا با گذشت زمان تغییر کرده باشن و آدما مسیرهای متفاوتی رو رفته باشن، ولی این باعث نمی‌شه خاطرات خوب گذشته ارزششون رو از دست بدن.</p>
+        <p>امیدوارم امسال برات شروع اتفاقای قشنگ‌تری باشه. بیشتر بخندی، کمتر غصه بخوری و زندگی بیشتر از همیشه مطابق میلت پیش بره. امیدوارم به چیزایی که آرزوشون رو داری برسی و وقتی به سالی که گذروندی نگاه می‌کنی از لحظه‌هایی که ساختی راضی باشی.</p>
+        <p>تولدت مبارک. امیدوارم بهترین روزها هنوز در انتظارت باشن.</p>
+      </div>
 
-        const confetti = [];
-        const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#54a0ff', '#5f27cd', '#01a3a4', '#f368e0'];
+      <div class="signature">
+        <div class="sig-name">آ. مهتی</div>
+        <div class="sig-date">۷ آبان ۱۴۰۵</div>
+      </div>
+    </div>
 
-        class ConfettiPiece {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height - canvas.height;
-                this.size = Math.random() * 10 + 5;
-                this.color = colors[Math.floor(Math.random() * colors.length)];
-                this.speed = Math.random() * 3 + 2;
-                this.angle = Math.random() * 360;
-                this.spin = Math.random() * 10 - 5;
-            }
+    <div class="footer">ساخته شده با عشق</div>
+  </div>
 
-            update() {
-                this.y += this.speed;
-                this.x += Math.sin(this.angle * Math.PI / 180);
-                this.angle += this.spin;
-                if (this.y > canvas.height) {
-                    this.y = -20;
-                    this.x = Math.random() * canvas.width;
-                }
-            }
+  <audio id="song" preload="auto">
+    <source src="https://irsv.upmusics.com/dlw/Tavalodet%20Mobarak%20Golam%20(320).mp3" type="audio/mpeg">
+  </audio>
 
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.angle * Math.PI / 180);
-                ctx.fillStyle = this.color;
-                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
-                ctx.restore();
-            }
-        }
+  <script>
+    // ===== Accurate time difference from 7 Aban 1391 =====
+    // 7 آبان 1391 = 29 October 2012 (Gregorian)
+    const startDate = new Date(2012, 9, 29); // month is 0-indexed
 
-        function initConfetti() {
-            for (let i = 0; i < 150; i++) {
-                confetti.push(new ConfettiPiece());
-            }
-        }
+    function updateCounter() {
+      const now = new Date();
+      let years = now.getFullYear() - startDate.getFullYear();
+      let months = now.getMonth() - startDate.getMonth();
+      let days = now.getDate() - startDate.getDate();
+      let hours = now.getHours() - startDate.getHours();
 
-        function animateConfetti() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            confetti.forEach(c => {
-                c.update();
-                c.draw();
-            });
-            requestAnimationFrame(animateConfetti);
-        }
+      if (hours < 0) {
+        hours += 24;
+        days--;
+      }
+      if (days < 0) {
+        // days in previous month
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+        months--;
+      }
+      if (months < 0) {
+        months += 12;
+        years--;
+      }
 
-        function launchConfetti() {
-            for (let i = 0; i < 50; i++) {
-                confetti.push(new ConfettiPiece());
-            }
-            // Create burst effect
-            for (let i = 0; i < 100; i++) {
-                const p = new ConfettiPiece();
-                p.x = canvas.width / 2;
-                p.y = canvas.height / 2;
-                p.speed = Math.random() * 15 + 5;
-                confetti.push(p);
-            }
-        }
+      document.getElementById('years').textContent = years;
+      document.getElementById('months').textContent = months;
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+    }
 
-        let isPlaying = false;
-        function playMusic() {
-            const audio = document.getElementById('birthdaySong');
-            const btn = document.getElementById('musicBtn');
-            if (isPlaying) {
-                audio.pause();
-                btn.textContent = '🎵 آهنگ تولد';
-            } else {
-                audio.play().catch(e => console.log('Audio play failed'));
-                btn.textContent = '⏸️ توقف آهنگ';
-            }
-            isPlaying = !isPlaying;
-        }
+    updateCounter();
+    setInterval(updateCounter, 60000); // update every minute (lightweight)
 
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
+    // ===== Open letter + play music =====
+    function openLetter() {
+      const btn = document.getElementById('openBtn');
+      const letter = document.getElementById('letter');
+      const song = document.getElementById('song');
 
-        // Start
-        initConfetti();
-        animateConfetti();
+      btn.classList.add('hidden');
+      letter.classList.add('show');
 
-        // Auto confetti every few seconds
-        setInterval(() => {
-            if (Math.random() > 0.7) launchConfetti();
-        }, 4000);
-    </script>
+      // Play music after user interaction (allowed by browsers)
+      song.volume = 0.7;
+      song.play().catch(() => {
+        // silent fail if blocked
+      });
+    }
+  </script>
 </body>
 </html>
