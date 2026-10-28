@@ -38,7 +38,6 @@
       min-height: 100vh;
     }
 
-    /* HOME */
     #home { display: block; }
     #home.hide { display: none; }
 
@@ -88,7 +87,7 @@
       text-align: center;
       font-size: 0.9rem;
       color: var(--muted);
-      margin-bottom: 36px;
+      margin-bottom: 40px;
     }
 
     .birth-info strong {
@@ -101,19 +100,18 @@
       background: linear-gradient(135deg, #29b6f6, #0288d1);
       color: white;
       border: none;
-      padding: 16px 42px;
+      padding: 20px 56px;
       border-radius: 50px;
       font-family: inherit;
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-size: 1.35rem;
+      font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 10px 28px rgba(41,182,246,0.35);
+      box-shadow: 0 12px 32px rgba(41,182,246,0.4);
       transition: transform 0.15s;
     }
 
     .open-btn:active { transform: scale(0.96); }
 
-    /* LETTER */
     #letterPage {
       display: none;
       padding-top: 24px;
@@ -121,7 +119,7 @@
 
     #letterPage.show {
       display: block;
-      animation: fadeIn 0.5s ease;
+      animation: fadeIn 0.45s ease;
     }
 
     @keyframes fadeIn {
@@ -196,7 +194,6 @@
 </head>
 <body>
 
-  <!-- HOME -->
   <div class="page" id="home">
     <div class="top-date">۷ آبان ۱۴۰۵</div>
 
@@ -212,11 +209,10 @@
     <div class="birth-info">از <strong>۷ آبان ۱۳۹۱</strong> تا امروز</div>
 
     <div class="btn-wrap">
-      <button class="open-btn" onclick="openLetter()">باز کردن متن تبریک</button>
+      <button class="open-btn" onclick="openLetter()">بزن اینجا</button>
     </div>
   </div>
 
-  <!-- LETTER -->
   <div class="page" id="letterPage">
     <div class="letter-card">
       <div class="letter-title">تولدت مبارک ملیکا</div>
@@ -239,13 +235,15 @@
     <div class="footer">برای ملیکا</div>
   </div>
 
-  <audio id="song" preload="auto">
+  <audio id="song" preload="auto" loop>
     <source src="https://irsv.upmusics.com/dlw/Tavalodet%20Mobarak%20Golam%20(320).mp3" type="audio/mpeg">
   </audio>
 
   <script>
     const birth = new Date(2012, 9, 29, 0, 0, 0);
     const song = document.getElementById('song');
+
+    // Preload as early as possible
     song.load();
 
     function updateCounter() {
@@ -289,9 +287,13 @@
     setInterval(updateCounter, 1000);
 
     function openLetter() {
+      // Play instantly
       song.volume = 0.7;
       song.currentTime = 0;
-      song.play().catch(() => {});
+      const playPromise = song.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
 
       document.getElementById('home').classList.add('hide');
       document.getElementById('letterPage').classList.add('show');
