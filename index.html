@@ -44,7 +44,6 @@
       padding: 32px 18px 70px;
     }
 
-    /* ===== Birth Date ===== */
     .birth-section {
       text-align: center;
       margin-bottom: 22px;
@@ -65,7 +64,6 @@
       text-shadow: 0 0 20px rgba(168,230,255,0.3);
     }
 
-    /* ===== Live Counter ===== */
     .counter-card {
       background: var(--card);
       backdrop-filter: blur(18px);
@@ -126,7 +124,6 @@
       font-weight: 400;
     }
 
-    /* ===== Button ===== */
     .btn-wrap {
       text-align: center;
       margin: 10px 0 28px;
@@ -159,7 +156,6 @@
       display: none;
     }
 
-    /* ===== Letter ===== */
     .letter {
       display: none;
       background: var(--card);
@@ -223,7 +219,6 @@
       font-weight: 400;
     }
 
-    /* ===== Footer ===== */
     .footer {
       text-align: center;
       margin-top: 48px;
@@ -243,13 +238,11 @@
 <body>
   <div class="container">
 
-    <!-- Birth Date (Top) -->
     <div class="birth-section">
       <div class="birth-label">تاریخ تولد</div>
       <div class="birth-date">۷ آبان ۱۳۹۱</div>
     </div>
 
-    <!-- Live Precise Counter -->
     <div class="counter-card">
       <div class="counter-title">تا این لحظه گذشته</div>
       <div class="time-grid" id="timeGrid">
@@ -280,14 +273,12 @@
       </div>
     </div>
 
-    <!-- Button -->
     <div class="btn-wrap">
       <button class="open-btn" id="openBtn" onclick="openLetter()">
         باز کردن متن تبریک
       </button>
     </div>
 
-    <!-- Letter -->
     <div class="letter" id="letter">
       <div class="letter-title">تولدت مبارک ملیکا</div>
       <div class="letter-body">
@@ -316,26 +307,50 @@
 
   <script>
     // 7 آبان 1391 = 26 October 2012
-    const startDate = new Date(2012, 9, 26, 0, 0, 0);
+    // We calculate age based on the birthday anniversary in a way that 
+    // before 7 Aban she is still previous year.
+    // Using precise Date difference with proper calendar math.
+
+    const birth = new Date(2012, 9, 26, 0, 0, 0); // 26 Oct 2012
 
     function updateCounter() {
       const now = new Date();
-      let diff = Math.floor((now - startDate) / 1000); // total seconds
 
-      const years = Math.floor(diff / (365.25 * 24 * 3600));
-      diff -= years * 365.25 * 24 * 3600;
+      // Calculate years / months / days properly
+      let years = now.getFullYear() - birth.getFullYear();
+      let months = now.getMonth() - birth.getMonth();
+      let days = now.getDate() - birth.getDate();
 
-      const months = Math.floor(diff / (30.44 * 24 * 3600));
-      diff -= months * 30.44 * 24 * 3600;
+      if (days < 0) {
+        months--;
+        // get number of days in previous month
+        const prevMonthDays = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+        days += prevMonthDays;
+      }
 
-      const days = Math.floor(diff / (24 * 3600));
-      diff -= days * 24 * 3600;
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
 
-      const hours = Math.floor(diff / 3600);
-      diff -= hours * 3600;
+      // Remaining time of day (hours, minutes, seconds)
+      // We take the time from the start of the current day relative to birth time (midnight)
+      // For simplicity and accuracy of "elapsed", we calculate full remaining from last full day
 
-      const minutes = Math.floor(diff / 60);
-      const seconds = Math.floor(diff % 60);
+      // Better: calculate total milliseconds then break down the remainder after years/months/days
+      const temp = new Date(birth);
+      temp.setFullYear(birth.getFullYear() + years);
+      temp.setMonth(birth.getMonth() + months);
+      temp.setDate(birth.getDate() + days);
+
+      let remainingMs = now - temp;
+      if (remainingMs < 0) remainingMs = 0;
+
+      const hours = Math.floor(remainingMs / (1000 * 60 * 60));
+      remainingMs -= hours * 1000 * 60 * 60;
+      const minutes = Math.floor(remainingMs / (1000 * 60));
+      remainingMs -= minutes * 1000 * 60;
+      const seconds = Math.floor(remainingMs / 1000);
 
       document.getElementById('years').textContent = years;
       document.getElementById('months').textContent = months;
