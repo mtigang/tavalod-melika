@@ -8,16 +8,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg1: #0f0c29;
-      --bg2: #302b63;
-      --bg3: #24243e;
-      --accent: #ff6b9d;
-      --accent2: #c44569;
-      --gold: #f8e9a1;
+      --bg1: #0a1628;
+      --bg2: #0f2744;
+      --bg3: #1a3a5c;
+      --accent: #4fc3f7;
+      --accent2: #29b6f6;
+      --gold: #a8e6ff;
       --text: #ffffff;
-      --muted: rgba(255,255,255,0.7);
-      --card: rgba(255,255,255,0.08);
-      --border: rgba(255,255,255,0.15);
+      --muted: rgba(255,255,255,0.65);
+      --card: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.12);
     }
 
     * {
@@ -28,48 +28,55 @@
     }
 
     body {
-      font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
-      background: linear-gradient(160deg, var(--bg1), var(--bg2), var(--bg3));
+      font-family: 'Vazirmatn', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(165deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
       background-attachment: fixed;
       min-height: 100vh;
       color: var(--text);
       overflow-x: hidden;
-      line-height: 1.7;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
     }
 
     .container {
       max-width: 520px;
       margin: 0 auto;
-      padding: 28px 18px 60px;
+      padding: 32px 18px 70px;
     }
 
-    /* ===== Counter Section ===== */
-    .counter-section {
+    /* ===== Birth Date ===== */
+    .birth-section {
       text-align: center;
-      margin-bottom: 36px;
-      perspective: 1000px;
+      margin-bottom: 22px;
     }
 
-    .counter-title {
-      font-size: 0.95rem;
-      font-weight: 400;
+    .birth-label {
+      font-size: 0.9rem;
       color: var(--muted);
-      margin-bottom: 18px;
-      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      font-weight: 400;
     }
 
+    .birth-date {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 20px rgba(168,230,255,0.3);
+    }
+
+    /* ===== Live Counter ===== */
     .counter-card {
       background: var(--card);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 28px 16px 22px;
+      border-radius: 26px;
+      padding: 26px 14px 20px;
       box-shadow: 
-        0 20px 40px rgba(0,0,0,0.35),
-        0 0 0 1px rgba(255,255,255,0.05) inset,
-        0 -2px 20px rgba(255,107,157,0.08);
-      transform-style: preserve-3d;
+        0 18px 40px rgba(0,0,0,0.4),
+        0 0 0 1px rgba(255,255,255,0.04) inset;
+      margin-bottom: 36px;
       position: relative;
     }
 
@@ -77,71 +84,70 @@
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: 28px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent 50%);
+      border-radius: 26px;
+      background: linear-gradient(145deg, rgba(79,195,247,0.08), transparent 60%);
       pointer-events: none;
+    }
+
+    .counter-title {
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+      font-weight: 400;
     }
 
     .time-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
     }
 
     .time-box {
-      background: rgba(0,0,0,0.25);
+      background: rgba(0,0,0,0.28);
       border-radius: 16px;
-      padding: 14px 4px 10px;
-      border: 1px solid rgba(255,255,255,0.08);
+      padding: 14px 4px 11px;
+      border: 1px solid rgba(255,255,255,0.07);
+      text-align: center;
     }
 
     .time-value {
-      font-size: 1.75rem;
+      font-size: 1.65rem;
       font-weight: 800;
-      color: var(--gold);
-      line-height: 1.1;
-      text-shadow: 0 2px 12px rgba(248,233,161,0.35);
+      color: var(--accent);
+      line-height: 1.15;
+      font-variant-numeric: tabular-nums;
     }
 
     .time-label {
       font-size: 0.72rem;
       color: var(--muted);
-      margin-top: 4px;
+      margin-top: 5px;
       font-weight: 400;
-    }
-
-    .from-date {
-      margin-top: 18px;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .from-date strong {
-      color: var(--accent);
-      font-weight: 600;
     }
 
     /* ===== Button ===== */
     .btn-wrap {
       text-align: center;
-      margin: 32px 0 24px;
+      margin: 10px 0 28px;
     }
 
     .open-btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      background: linear-gradient(135deg, #29b6f6, #0288d1);
       color: white;
       border: none;
-      padding: 16px 36px;
+      padding: 16px 38px;
       border-radius: 50px;
       font-family: inherit;
-      font-size: 1.1rem;
+      font-size: 1.08rem;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 12px 28px rgba(255,107,157,0.4);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 10px 28px rgba(41,182,246,0.35);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
       -webkit-appearance: none;
     }
 
@@ -157,13 +163,13 @@
     .letter {
       display: none;
       background: var(--card);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       border: 1px solid var(--border);
       border-radius: 24px;
-      padding: 28px 22px 32px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-      animation: fadeUp 0.5s ease;
+      padding: 30px 22px 34px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+      animation: fadeUp 0.45s ease;
     }
 
     .letter.show {
@@ -171,47 +177,48 @@
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
+      from { opacity: 0; transform: translateY(14px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     .letter-title {
       text-align: center;
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       font-weight: 700;
-      margin-bottom: 22px;
+      margin-bottom: 26px;
       color: var(--gold);
+      letter-spacing: 0.3px;
     }
 
     .letter-body {
-      font-size: 1.02rem;
+      font-size: 1.05rem;
       font-weight: 400;
-      color: rgba(255,255,255,0.92);
-      line-height: 2.05;
+      color: rgba(255,255,255,0.93);
+      line-height: 2.15;
       text-align: justify;
     }
 
     .letter-body p {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     .signature {
-      margin-top: 36px;
+      margin-top: 38px;
       text-align: left;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
 
     .sig-name {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: var(--accent);
-      margin-bottom: 4px;
-      letter-spacing: 0.5px;
+      margin-bottom: 5px;
+      letter-spacing: 0.8px;
     }
 
     .sig-date {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: var(--muted);
       font-weight: 400;
     }
@@ -219,46 +226,56 @@
     /* ===== Footer ===== */
     .footer {
       text-align: center;
-      margin-top: 40px;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.4);
+      margin-top: 48px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.35);
+      font-weight: 400;
     }
 
-    /* Mobile optimizations */
     @media (max-width: 400px) {
-      .time-value { font-size: 1.45rem; }
+      .time-value { font-size: 1.4rem; }
       .time-label { font-size: 0.65rem; }
-      .letter-body { font-size: 0.97rem; }
+      .letter-body { font-size: 0.98rem; }
+      .birth-date { font-size: 1.35rem; }
     }
   </style>
 </head>
 <body>
   <div class="container">
 
-    <!-- Counter -->
-    <div class="counter-section">
-      <div class="counter-title">از روزی که اومدی تا امروز</div>
-      <div class="counter-card">
-        <div class="time-grid" id="timeGrid">
-          <div class="time-box">
-            <div class="time-value" id="years">0</div>
-            <div class="time-label">سال</div>
-          </div>
-          <div class="time-box">
-            <div class="time-value" id="months">0</div>
-            <div class="time-label">ماه</div>
-          </div>
-          <div class="time-box">
-            <div class="time-value" id="days">0</div>
-            <div class="time-label">روز</div>
-          </div>
-          <div class="time-box">
-            <div class="time-value" id="hours">0</div>
-            <div class="time-label">ساعت</div>
-          </div>
+    <!-- Birth Date (Top) -->
+    <div class="birth-section">
+      <div class="birth-label">تاریخ تولد</div>
+      <div class="birth-date">۷ آبان ۱۳۹۱</div>
+    </div>
+
+    <!-- Live Precise Counter -->
+    <div class="counter-card">
+      <div class="counter-title">تا این لحظه گذشته</div>
+      <div class="time-grid" id="timeGrid">
+        <div class="time-box">
+          <div class="time-value" id="years">0</div>
+          <div class="time-label">سال</div>
         </div>
-        <div class="from-date">
-          از <strong>۷ آبان ۱۳۹۱</strong> تا امروز
+        <div class="time-box">
+          <div class="time-value" id="months">0</div>
+          <div class="time-label">ماه</div>
+        </div>
+        <div class="time-box">
+          <div class="time-value" id="days">0</div>
+          <div class="time-label">روز</div>
+        </div>
+        <div class="time-box">
+          <div class="time-value" id="hours">0</div>
+          <div class="time-label">ساعت</div>
+        </div>
+        <div class="time-box">
+          <div class="time-value" id="minutes">0</div>
+          <div class="time-label">دقیقه</div>
+        </div>
+        <div class="time-box">
+          <div class="time-value" id="seconds">0</div>
+          <div class="time-label">ثانیه</div>
         </div>
       </div>
     </div>
@@ -272,7 +289,7 @@
 
     <!-- Letter -->
     <div class="letter" id="letter">
-      <div class="letter-title">تولدت مبارک ملیکا 💛</div>
+      <div class="letter-title">تولدت مبارک ملیکا</div>
       <div class="letter-body">
         <p>سلام ملیکا زنگنه تولدت مبارک.</p>
         <p>ملیکا امیدوارم سال جدید زندگیت پر از اتفاقای خوب، خنده‌های از ته دل و خاطرات قشنگ کنار خانوادت باشه که تا مدت‌ها با یادآوریشون لبخند بزنی.</p>
@@ -290,7 +307,7 @@
       </div>
     </div>
 
-    <div class="footer">ساخته شده با عشق</div>
+    <div class="footer">برای ملیکا</div>
   </div>
 
   <audio id="song" preload="auto">
@@ -298,42 +315,39 @@
   </audio>
 
   <script>
-    // ===== Accurate time difference from 7 Aban 1391 =====
-    // 7 آبان 1391 = 29 October 2012 (Gregorian)
-    const startDate = new Date(2012, 9, 29); // month is 0-indexed
+    // 7 آبان 1391 = 26 October 2012
+    const startDate = new Date(2012, 9, 26, 0, 0, 0);
 
     function updateCounter() {
       const now = new Date();
-      let years = now.getFullYear() - startDate.getFullYear();
-      let months = now.getMonth() - startDate.getMonth();
-      let days = now.getDate() - startDate.getDate();
-      let hours = now.getHours() - startDate.getHours();
+      let diff = Math.floor((now - startDate) / 1000); // total seconds
 
-      if (hours < 0) {
-        hours += 24;
-        days--;
-      }
-      if (days < 0) {
-        // days in previous month
-        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-        days += prevMonth.getDate();
-        months--;
-      }
-      if (months < 0) {
-        months += 12;
-        years--;
-      }
+      const years = Math.floor(diff / (365.25 * 24 * 3600));
+      diff -= years * 365.25 * 24 * 3600;
+
+      const months = Math.floor(diff / (30.44 * 24 * 3600));
+      diff -= months * 30.44 * 24 * 3600;
+
+      const days = Math.floor(diff / (24 * 3600));
+      diff -= days * 24 * 3600;
+
+      const hours = Math.floor(diff / 3600);
+      diff -= hours * 3600;
+
+      const minutes = Math.floor(diff / 60);
+      const seconds = Math.floor(diff % 60);
 
       document.getElementById('years').textContent = years;
       document.getElementById('months').textContent = months;
       document.getElementById('days').textContent = days;
       document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
     }
 
     updateCounter();
-    setInterval(updateCounter, 60000); // update every minute (lightweight)
+    setInterval(updateCounter, 1000);
 
-    // ===== Open letter + play music =====
     function openLetter() {
       const btn = document.getElementById('openBtn');
       const letter = document.getElementById('letter');
@@ -342,11 +356,8 @@
       btn.classList.add('hidden');
       letter.classList.add('show');
 
-      // Play music after user interaction (allowed by browsers)
       song.volume = 0.7;
-      song.play().catch(() => {
-        // silent fail if blocked
-      });
+      song.play().catch(() => {});
     }
   </script>
 </body>
